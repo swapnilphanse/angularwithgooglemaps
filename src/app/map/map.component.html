@@ -1,0 +1,39 @@
+
+<div class="login-wrapper">
+  <google-map
+height="100vh"
+width="100%"
+[zoom]="zoom"
+[center]="center"
+[options]="options"
+>
+<map-marker
+  #markerElem
+  *ngFor="let marker of markers"
+  [position]="marker.position"
+  [label]="marker.label"
+  [title]="marker.title"
+  
+(mapClick)="openInfo(markerElem, marker.info,marker.image)"
+>
+</map-marker>
+
+
+
+<map-info-window >
+{{infoContent}}
+</map-info-window>
+
+
+</google-map>
+
+</div>
+<mat-select [(ngModel)]="selectedLocation" (ngModelChange)="onselectedLocation()">
+  <mat-option [value]="0">--All--</mat-option>
+  <mat-option *ngFor="let user of this.Users" [value]="user.created" >
+    {{user.created}}
+  </mat-option>
+</mat-select>
+
+
+
